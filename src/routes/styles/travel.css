@@ -1,0 +1,482 @@
+
+  body{
+    background-image: url("../../images/background.jpg");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  .dropdown {
+    position: fixed; /* Position the dropdown absolutely */
+    top: 3%;
+    right: 7%;
+    z-index: 5;
+  }
+  .dropdown-btn {
+    position: sticky;
+    top: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 0px;
+    padding: 5px;
+  }
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    width: 120px; /* Set a specific width if needed */
+    border:solid 3px white;
+    border-radius: 9px;
+  }
+  .dropdown-content a,.dropdown-content .logout-button {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+
+  }
+  .dropdown-content a:hover,.dropdown-content .logout-button:hover {
+    background-color: #f1f1f1;
+    text-decoration: none;
+    color: blueviolet;
+  }
+  .dropdown-content .logout-button{
+    padding-left: 15px;
+    padding-right: 50px;
+    background: none;
+    border: none;
+    justify-content: center;
+  }
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  .clear {clear: both;}
+  .sidenav {
+    width: 15%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    padding-top: 20px;
+  }
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 70px;;
+    text-align: center;
+  }
+  .sidenav li {
+    margin-bottom: 25px;
+  }
+  .sidenav a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }
+  .sidenav a:hover {
+    color: #00bcd4;
+  }
+  .header{
+    width: 100%;
+    height: 90px;
+    background-color: rgb(145, 145, 145);
+    border-radius: 6px;
+    padding-top: 1%;
+    margin-bottom: 3%;
+    position: sticky;
+    top:0;
+  }
+  .topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 6px;
+    position: sticky;
+    top: 0;
+    display: flex;
+    /* margin-left:100px ; */
+
+    justify-content: flex-start;
+    z-index: 1; /* Add z-index to ensure the navbar stays on top */
+  }
+  .topnav .topnav-list {
+    float: none;
+    display: inline-block;
+    margin-right: 13%;
+    /* justify-content: space-evenly; */
+    /* align-items: center; */
+  }
+  .topnav .topnav-list button,
+  .topnav .topnav-list a {
+    display: block;
+    text-align: center;
+    padding: 5px 10px;
+    text-decoration: none;
+    background-color: none;
+    margin: 5px 10px;
+    border-radius: 10px;
+    border: none; /* Remove border */
+    background: none; /* Remove background */
+    width: inherit;
+  }
+  .topnav .topnav-list button{
+    cursor:not-allowed,
+
+  }
+  .topnav-image {
+    background:none;
+    padding-top: 0;
+    z-index: 2;
+    height: 60px;  }
+  .topnav .topnav-list a:hover {
+    background-color: #9e9e9e;
+    color: aliceblue;
+  }
+  .topnav .topnav-list a.active {
+    background-color: #808080;
+    padding: 4px;
+    border: 1px solid black;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
+    color: aliceblue;
+}
+
+
+  .logo-topnav {
+    margin-left: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:54%;  
+    border-radius: 5px;
+  }
+    
+    .logo-topnav:hover {
+      background-color: none;
+    }
+      
+
+  .logo-topnav-img {
+    margin-top: 6px;
+    width: 180px; /* Adjust the width as needed */
+    max-width: 100px;
+    max-height: auto;
+    padding: 0;
+  }
+
+
+  .clear {clear: both;}
+  .default-main {
+    margin-left: 15.5%;
+    margin-top: 12%;
+    width: 80%;
+  }
+  .trip-main {
+    width: 99%; /* Adjust the width as needed */
+    margin: auto; /* Center the form */
+    background-color: rgba(56, 56, 56, 0.4); /* Transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Optional: Add a subtle box shadow */
+  }
+  .trip-form h3{
+    color: rgb(255, 234, 234,.8);
+  }
+  .trip-form-input,.trip-select {
+    width: 20%; 
+    padding: 8px;
+    margin: 10px 2%; 
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgba(255, 243, 243, 0.7);
+  }
+  .trip-form-submit {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 8px 2%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .trip-form-submit:hover {
+    background-color: #45a049;
+  }
+  .default-form
+  {
+    
+    
+    background-color: rgba(56, 56, 56, 0.6); /* Transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  .default-form h3{
+    color: rgb(255, 234, 234,.8);
+  }
+  .default-form-input,.default-select {
+    width: 24%; /* Adjust the width as needed */
+    padding: 8px;
+    margin: 10px 4%; /* Add a small margin between input fields */
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgba(255, 243, 243, 0.7);
+  }
+  .default-form-submit, .default-form-clear {
+    width: 24%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    margin: 8px 4%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .default-form-submit:hover {
+    background-color: #45a049;
+  }
+  .success{
+    color: #ccc;
+    margin-left: 10%;
+  }
+  .table-container {
+    max-height: calc(6 * (4em + 2px)); /* Adjust the height based on your table row height */
+    overflow-y: auto;
+    margin-bottom: 20px;
+
+  }
+  
+  .table {
+    overflow-x: scroll;
+    font-size: 10px;
+    text-align: center;
+    table-layout: auto;
+    max-width: 100%;
+  }
+  
+  thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1; /* Ensure the heading stays above the body */
+    background-color: white; /* Optional: Make the background white to hide any overlapping with the table body */
+    color:black;
+  }
+  button img
+  {
+    max-height: 15px;
+    padding: 0;
+    margin: 0;
+  }
+
+  
+  .logo {
+    margin-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+
+  .logo-img {
+    width: 500px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+
+
+.landing-main{
+  background-color: rgba(255, 243, 243, 0.5);
+  position: absolute; /* or relative, depending on your layout */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw; /* 100% of viewport width */
+  height: 100vh; /* 100% of viewport height */;
+}
+  .mode {
+    border-radius: 8px;
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+  }
+  
+  .mode button {
+    /* background-color: #ffffff; Set your desired background color */
+    border: 3px rgb(65, 65, 65) solid;
+    border-radius: 16px;
+    background: none;
+     /* Adjust the margin for space between buttons */
+    padding: 10px; /* Adjust padding as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .mode button:hover{
+    background-color: rgba(55, 61, 59, 0.384);
+  }
+  
+  .mode-img {
+    background-color: none;
+    width: auto; /* Adjust the width of the image */
+    height: 200px;
+    max-height: 500px; /* Adjust the height of the image */
+    margin-right: 5px; /* Adjust the margin for space between image and text */
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: space-around;
+  }
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .form-group input, .form-group select{
+    width: 80%;
+  }
+  .form-group {
+    flex: 0 0 30%; /* Adjust the width as needed */
+    margin-bottom: 6px;
+  }
+  .form-group label {
+    display: block;
+    margin-bottom: 2px;
+    color: white;
+  }
+  .disabled-button
+  {
+    cursor: not-allowed;
+  }
+  .hidden {
+    display: none;
+  }
+
+  /* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Color and style of the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.csv-button
+{
+  margin:auto;
+  margin-bottom: 10%;
+  padding: 10px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  background: rgb(135, 135, 255);
+  color: white;
+  padding: 0;
+  border: none;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-item {
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+}
+
+.pagination-item.active {
+  background-color: #007bff;
+  color: #fff;
+}
+.pagination-item:hover {
+  box-shadow: #333;
+}
+
+.pagination-item.disabled {
+  cursor: not-allowed;
+  color: #ccc;
+  border-color: #ccc;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 10px;
+  width: 100%;
+}
+
+.search-dropdown, .search-input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-input {
+  width: 44%;
+  flex: 1;
+  margin: 0px 8px;
+}
+
+.search-button, .clear-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.clear-button{
+  width: 20%;
+  background-color: grey;
+}
+.search-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.search-button:focus, .clear-button:focus {
+  outline: none;
+}
+
+.icon-magnifier {
+  width: 18px;
+  height: 18px;
+  fill: white;
+}
+/* .asterisk{
+  padding: 0;
+  margin: -2%;
+  color: red;
+  display: inline;
+  
+} */
