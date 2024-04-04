@@ -1,49 +1,23 @@
-/**
- * Contains API class to setup new axios instance
- */
+// apiInstance.js
 import axios from 'axios';
-
-import { ROUTES } from '../Routes.constants';
-
-import { KEYS } from '../dataKeys';
 import { CONFIG } from '../config';
-
+import { KEYS } from '../dataKeys';
+import { ROUTES } from '../Routes.constants';
 const CancelToken = axios.CancelToken;
 
-/**
- * API class to create axios instnces with passed base URL.
- */
-export class APIInstance {
-    constructor(options) {
-        this.baseURL = options.baseURL;
-        this.api = this.axiosInstance();
-        this.pending = {};
-        this.CancelToken = axios.CancelToken;
-        this.setCancelPendingInterceptor(this.api);
-    }
+const api = axios.create({
+    baseURL: CONFIG.API_VERSION,
+});
 
-    /**
-     * Create axios instance with user timezone and passed base URL
-     */
-    axiosInstance() {
-        this.api = axios.create({
-            baseURL: CONFIG.API_VERSION + this.baseURL,
-
-        });
-        return this.api;
-    }
-
-    // update pending requests (add || delete, cancel)
-    updatePending(config, cancel) {
+export const useAPI = () => {
+    const updatePending = (config, cancel) => {
         let url = '';
         if (config && config.url) {
             url = `${config.baseURL}${config.url}`;
         }
-        // Return in case method does not exists
         if (!config || !config.method) {
             return;
         }
-
         let flagUrl = '';
         if (config.method) {
             flagUrl = url + '&' + config.method;
@@ -52,59 +26,53 @@ export class APIInstance {
             flagUrl += '&' + JSON.stringify(config.params);
         }
         if (cancel) {
-            this.pending[flagUrl] = cancel;
+            pending[flagUrl] = cancel;
         } else {
-            delete this.pending[flagUrl];
+            delete pending[flagUrl];
         }
-    }
+    };
 
-    // set cancel pending interceptor for all requests
-    setCancelPendingInterceptor(instance) {
-        if (!instance) {
-            instance = this.axiosInstance();
-        }
-        instance.interceptors.request.use((config) => {
-            // eslint-disable-next-line no-console
-            console.log('config', config);
-            if (config.noCancel) {
-                return config;
+    const cancelPending = () => {
+        Object.keys(pending).forEach((e) => {
+            if (pending[e]) {
+                pending[e]();
+                delete pending[e];
             }
-            const token = localStorage.getItem(KEYS.ACCESS_TOKEN);
-            if (token) {
-                config.headers['Authorization'] = `${token}`;
-            }
+        });
+    };
 
-            config.cancelToken = new CancelToken((cancel) => {
-                this.updatePending(config, cancel);
-            });
+    const pending = {};
+
+    api.interceptors.request.use((config) => {
+        if (config.noCancel) {
             return config;
+        }
+        // localStorage.setItem(KEYS.ACCESS_TOKEN, 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBoaWxpcHMiLCJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzEyMjE0MzAzLCJleHAiOjE3MTIzMDA3MDN9.Y30yh5402Fu6qe_zHLptB5VTVOQ1KUMs1HRq9Nnxt9U');
+        const token = localStorage.getItem(KEYS.ACCESS_TOKEN);
+        if (token) {
+            config.headers['Authorization'] = `${token}`;
+        }
+        config.cancelToken = new CancelToken((cancel) => {
+            updatePending(config, cancel);
         });
+        return config;
+    });
 
-        instance.interceptors.response.use(
-            (response) => {
-                this.updatePending(response.config);
-                return response;
-            },
-            (error) => {
-                const { response } = error;
-                if ((response && response.status === 401) || (response && response.status === 403)) {
-                    localStorage.clear();
-                    window.location = ROUTES.LOGIN;
-                }
-                this.updatePending(error.config);
-                return Promise.reject(error);
+    api.interceptors.response.use(
+        (response) => {
+            updatePending(response.config);
+            return response;
+        },
+        (error) => {
+            const { response } = error;
+            if ((response && response.status === 401) || (response && response.status === 403)) {
+                localStorage.clear();
+                // window.location = ROUTES.LOGIN;
             }
-        );
-        return instance;
-    }
+            updatePending(error.config);
+            return Promise.reject(error);
+        }
+    );
 
-    // cancel all pending requests
-    cancelPending() {
-        Object.keys(this.pending).forEach((e) => {
-            if (this.pending[e]) {
-                this.pending[e]();
-                delete this.pending[e];
-            }
-        });
-    }
-}
+    return { api, cancelPending };
+};

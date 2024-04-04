@@ -1,0 +1,29 @@
+.sidenav {
+  background-color: #464242;
+  display: flex;
+  justify-content: center;
+}
+
+.sidenav ul {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.sidenav li {
+  margin-right: 30px;
+}
+
+.sidenav a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.sidenav a:hover {
+  color: #ff7171;
+}
+.sidenav a:active{
+  color: #ff7171;
+}

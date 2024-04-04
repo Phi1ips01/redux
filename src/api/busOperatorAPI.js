@@ -1,46 +1,49 @@
+import { useAPI } from './apiInstance'; 
 
-import { APIInstance } from './apiInstance';
+const BusOperatorAPI = () => {
+    const { api } = useAPI();
+    console.log("api");
 
-export const instance = new APIInstance({
-    baseURL: 'busOperator/showAll'
-});
-export const postInstance = new APIInstance({
-    baseURL: 'busOperator/add'
-});
-export const deleteInstance =new APIInstance({
-    baseURL:'busOperator/delete'
-})
-export const updateInstance =new APIInstance({
-    baseURL:'busOperator/update'
-})
-export const showOneInstance = new APIInstance({
-    baseURL: 'busOperator/showOne'
-})
-const api = instance.api;
-const postApi = postInstance.api
-const deleteApi = deleteInstance.api
-const updateApi = updateInstance.api
-const showOneApi = showOneInstance.api
+    const showAllBusOperator = async (page, size, search, keyword) => {
+        return await api.get(`busOperator/showall?page=${page}&size=${size}&search=${search ? search : 'name'}&keyword=${keyword ? keyword : ''}`);
+    };
 
-export const showAllBusOperator = (pageIndex,pageSize,search,keyword) => {
-    console.log("busoperatorAPI model")
-    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:'name'}&keyword=${keyword?keyword:''}`)
+    const showAllCSVBusOperator = async () => {
+        console.log("busoperatorapi");
+        const response = await api.get(`busOperator/showAll`);
+        return response
+    };
+
+    const showOneBusOperator = async (id) => {
+        console.log("busoperatorapi",id);
+        const response = await api.get(`busOperator/showOne?id=${id}`);
+        return response
+    };
+
+    const addBusOperator =async (busOperatorData) => {
+        const response=await api.post('busOperator/add', busOperatorData);
+        return response 
 };
-export const showAllCSVBusOperator = ()=>{
-    return api.get()
-}
-export const addBusOperator = (payload) =>{
-    return postApi.post(postApi.baseURL,payload)
-}
 
-export const deleteBusOperator = (payload) => {
-    console.log("payload",payload)
-    return deleteApi.delete(deleteApi.baseURL, { data: payload })
-}
-export const updateBusOperator = (payload)=>{
-    return updateApi.put(updateApi.baseURL,payload)
-}
-export const showOneBusOperator = (payload)=>{
-    console.log("api",payload)
-    return showOneApi.get(showOneApi.baseURL,{  params: payload  })
-}
+    const updateBusOperator =async (busOperatorData) => {
+       return await api.put('busOperator/update', busOperatorData);
+    };
+
+    const deleteBusOperator =async (busOperatorId) => {
+        return await api.delete('busOperator/delete', { data: { id: busOperatorId } });
+    };
+    const getTotalBusOperator = async ()=>{
+        return await api.get('busOperator/getTotal')
+    }
+    return {
+        showAllCSVBusOperator,
+        showAllBusOperator,
+        addBusOperator,
+        updateBusOperator,
+        deleteBusOperator,
+        showOneBusOperator,
+        getTotalBusOperator
+    };
+};
+
+export default BusOperatorAPI;

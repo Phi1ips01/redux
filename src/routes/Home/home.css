@@ -1,0 +1,98 @@
+  .trip-form-submit {
+    width: 20%;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    margin: 8px 2%;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .trip-form-submit:hover {
+    background-color: #0056b3;
+  }
+
+
+  .container {
+    margin: 8px auto;
+    max-width: 90%;
+    background: #fff;
+    width: 90%;
+    padding: 10px 40px 10px 40px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+
+  }
+  
+.container .text{
+  text-align: center;
+  font-size: 36px;
+  font-weight: 200;
+  font-family: 'Poppins', sans-serif;
+  background: black;
+  background-clip: text;
+}
+.container form{
+  padding: 30px 0 0 0;
+}
+.container form .form-row{
+  display: flex;
+  margin: 32px 0;
+}
+form .form-row .input-data{
+  width: 20%;
+  height: 40px;
+  margin: 0 20px;
+  position: relative;
+}
+
+.input-data input,.input-data .trip-select, .default-select{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(0,0,0, 0.12);
+}
+
+.input-data .underline{
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+.input-data .underline:before{
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:active ~ .underline:before{
+  transform: scale(1);
+}
+.submit-btn .input-data{
+  overflow: hidden;
+  height: 45px!important;
+  width: 25%!important;
+}
+@media (max-width: 700px) {
+  .container .text{
+    font-size: 30px;
+  }
+  .container form{
+    padding: 10px 0 0 0;
+  }
+  .container form .form-row{
+    display: block;
+  }
+  form .form-row .input-data{
+    margin: 35px 0!important;
+  }
+  .submit-btn .input-data{
+    width: 40%!important;
+  }
+}

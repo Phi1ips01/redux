@@ -1,239 +1,48 @@
-
-  body{
-    background-image: url("../../images/background.jpg");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
-  .dropdown {
-    position: fixed; /* Position the dropdown absolutely */
-    top: 3%;
-    right: 7%;
-    z-index: 5;
-  }
-  .dropdown-btn {
-    position: sticky;
-    top: 0;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    margin-top: 0px;
-    padding: 5px;
-  }
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1;
-    width: 120px; /* Set a specific width if needed */
-    border:solid 3px white;
-    border-radius: 9px;
-  }
-  .dropdown-content a,.dropdown-content .logout-button {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-
-  }
-  .dropdown-content a:hover,.dropdown-content .logout-button:hover {
-    background-color: #f1f1f1;
-    text-decoration: none;
-    color: blueviolet;
-  }
-  .dropdown-content .logout-button{
-    padding-left: 15px;
-    padding-right: 50px;
-    background: none;
-    border: none;
-    justify-content: center;
-  }
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  .clear {clear: both;}
-  .sidenav {
-    width: 15%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    padding-top: 20px;
-  }
-  .sidenav ul {
-    list-style-type: none;
-    padding: 0;
-    margin-top: 70px;;
-    text-align: center;
-  }
-  .sidenav li {
-    margin-bottom: 25px;
-  }
-  .sidenav a {
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-  }
-  .sidenav a:hover {
-    color: #00bcd4;
-  }
-  .header{
-    width: 100%;
-    height: 90px;
-    background-color: rgb(145, 145, 145);
-    border-radius: 6px;
-    padding-top: 1%;
-    margin-bottom: 3%;
-    position: sticky;
-    top:0;
-  }
-  .topnav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 6px;
-    position: sticky;
-    top: 0;
-    display: flex;
-    /* margin-left:100px ; */
-
-    justify-content: flex-start;
-    z-index: 1; /* Add z-index to ensure the navbar stays on top */
-  }
-  .topnav .topnav-list {
-    float: none;
-    display: inline-block;
-    margin-right: 13%;
-    /* justify-content: space-evenly; */
-    /* align-items: center; */
-  }
-  .topnav .topnav-list button,
-  .topnav .topnav-list a {
-    display: block;
-    text-align: center;
-    padding: 5px 10px;
-    text-decoration: none;
-    background-color: none;
-    margin: 5px 10px;
-    border-radius: 10px;
-    border: none; /* Remove border */
-    background: none; /* Remove background */
-    width: inherit;
-  }
-  .topnav .topnav-list button{
-    cursor:not-allowed,
-
-  }
-  .topnav-image {
-    background:none;
-    padding-top: 0;
-    z-index: 2;
-    height: 60px;  }
-  .topnav .topnav-list a:hover {
-    background-color: #9e9e9e;
-    color: aliceblue;
-  }
-  .topnav .topnav-list a.active {
-    background-color: #808080;
-    padding: 4px;
-    border: 1px solid black;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); 
-    color: aliceblue;
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-
-  .logo-topnav {
-    margin-left: 20%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width:54%;  
-    border-radius: 5px;
-  }
-    
-    .logo-topnav:hover {
-      background-color: none;
-    }
-      
-
-  .logo-topnav-img {
-    margin-top: 6px;
-    width: 180px; /* Adjust the width as needed */
-    max-width: 100px;
-    max-height: auto;
-    padding: 0;
-  }
-
-
-  .clear {clear: both;}
-  .default-main {
-    margin-left: 15.5%;
-    margin-top: 12%;
+  .default-main{
+    margin: 18px auto;
+    max-width:75%;
+    background: #fff;
     width: 80%;
+    padding: 10px 40px 10px 40px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.4);
   }
-  .trip-main {
-    width: 99%; /* Adjust the width as needed */
-    margin: auto; /* Center the form */
-    background-color: rgba(56, 56, 56, 0.4); /* Transparent white background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Optional: Add a subtle box shadow */
+  .default-main .text{
+    text-align: center;
+    font-size: 24px;
+    font-weight: 200;
+    font-family: 'Poppins', sans-serif;
+    background: black;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  .trip-form h3{
-    color: rgb(255, 234, 234,.8);
+  
+  .defaut-main form{
+    padding: 0 0;
   }
-  .trip-form-input,.trip-select {
-    width: 20%; 
-    padding: 8px;
-    margin: 10px 2%; 
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: rgba(255, 243, 243, 0.7);
+  .default-main form .default-form-row{
+    display: flex;
+    justify-content: center;
+    margin: 32px 0;
   }
-  .trip-form-submit {
-    width: 20%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
-    margin: 8px 2%;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+  form .default-form-row .input-data{
+    width: 40%;
+    height: 40px;
+    margin: 8px 16px;
+    position: relative;
   }
-  .trip-form-submit:hover {
-    background-color: #45a049;
-  }
-  .default-form
-  {
-    
-    
-    background-color: rgba(56, 56, 56, 0.6); /* Transparent white background */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-  }
-  .default-form h3{
-    color: rgb(255, 234, 234,.8);
-  }
-  .default-form-input,.default-select {
-    width: 24%; /* Adjust the width as needed */
-    padding: 8px;
-    margin: 10px 4%; /* Add a small margin between input fields */
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    background-color: rgba(255, 243, 243, 0.7);
-  }
+
   .default-form-submit, .default-form-clear {
     width: 24%;
-    background-color: #4CAF50;
+    background-color: #007bff;
     color: white;
     padding: 10px;
     margin: 8px 4%;
@@ -242,7 +51,7 @@
     cursor: pointer;
   }
   .default-form-submit:hover {
-    background-color: #45a049;
+    background-color: #0056b3;
   }
   .success{
     color: #ccc;
@@ -256,11 +65,11 @@
   }
   
   .table {
-    overflow-x: scroll;
-    font-size: 10px;
+    overflow-x: auto; /* Use auto to allow horizontal scrolling */
+    /* overflow-x: scroll; */
+    font-size: 12px;
     text-align: center;
     table-layout: auto;
-    max-width: 100%;
   }
   
   thead th {
@@ -270,13 +79,17 @@
     background-color: white; /* Optional: Make the background white to hide any overlapping with the table body */
     color:black;
   }
-  button img
+  /* .modify-table-button button img
   {
     max-height: 15px;
+    height: 15px;
     padding: 0;
     margin: 0;
-  }
+  } */
+  .edit img,.delete img{
+    max-height: 15px;
 
+  }
   
   .logo {
     margin-top: 5%;
@@ -344,16 +157,43 @@
     justify-content: space-evenly;
   }
   .form-group input, .form-group select{
-    width: 80%;
+    display: block;
+    width: max-content;
   }
   .form-group {
-    flex: 0 0 30%; /* Adjust the width as needed */
+    flex: 0 0 20%; /* Adjust the width as needed */
     margin-bottom: 6px;
   }
+  form .form-row .form-group .input-data{
+    width: 100%;
+    height: 40px;
+    margin: 0 12px;
+    position: relative;
+  }
+  .input-data .underline{
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+.input-data .underline:before{
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+.input-data input:focus ~ .underline:before,
+.input-data input:active ~ .underline:before{
+  transform: scale(1);
+}
   .form-group label {
     display: block;
     margin-bottom: 2px;
-    color: white;
+    color: black;
   }
   .disabled-button
   {
@@ -385,18 +225,20 @@
 }
 .csv-button
 {
-  margin:auto;
-  margin-bottom: 10%;
-  padding: 10px;
+  padding: 0 10px;
   border-radius: 6px;
-  display: flex;
-  justify-content: center;
-  background: rgb(135, 135, 255);
+   background: rgb(135, 135, 255);
   color: white;
-  padding: 0;
   border: none;
+  height: min-content;
 }
+.csv-totalbox
+{
+  margin: 8px 16px;
+  display: flex;
+  justify-content: space-between;
 
+}
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -473,10 +315,42 @@
   height: 18px;
   fill: white;
 }
-/* .asterisk{
-  padding: 0;
-  margin: -2%;
-  color: red;
-  display: inline;
-  
-} */
+
+.totals-box {
+  display: flex;
+  justify-content: end;
+  margin: 20px ; 
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  text-align: center;
+  display: inline-block;
+}
+
+/* Modal content */
+.modal-content {
+  padding: 20px;
+}
+
+/* Modal header */
+.modal-header {
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+}
+
+/* Modal body */
+.modal-body {
+  padding: 20px;
+}
+
+/* Modal footer */
+.modal-footer {
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+}
+
+/* Button styles */
+.btn {
+  margin-right: 10px;
+}

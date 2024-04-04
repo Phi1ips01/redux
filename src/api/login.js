@@ -1,13 +1,14 @@
 
-import { APIInstance } from './apiInstance';
+import { useAPI } from './apiInstance'; 
 
-export const instance = new APIInstance({
-    baseURL: 'user/login'
-});
+const Login = () => {
+    const { api } = useAPI();
+    console.log("api");
 
-const api = instance.api;
+const login =async (UserData) => {
+    await api.post('user/login', UserData);
+}
+return login
+}
 
-export const login = (payload) => {
-    console.log('paryload here',api);
-    return api.post(api.baseURL,payload);
-};
+export default Login;

@@ -1,47 +1,50 @@
+import { useAPI } from './apiInstance'; 
 
-import { APIInstance } from './apiInstance';
+const TripAPI = () => {
+    const { api } = useAPI(); 
+    console.log("api"); 
 
-export const instance = new APIInstance({
-    baseURL: 'trip/showAll'
-});
-export const postInstance = new APIInstance({
-    baseURL: 'trip/add'
-});
-export const deleteInstance =new APIInstance({
-    baseURL:'trip/delete'
-})
-export const updateInstance =new APIInstance({
-    baseURL:'trip/update'
-})
-export const showOneInstance = new APIInstance({
-    baseURL: 'trip/showOne'
-})
+    const showAllTrip = async (page, size, search, keyword) => {
+        console.log("pagesize",page,size,search,keyword)
+        const response = await api.get(`trip/showall?page=${page}&size=${size}&search=${search ? search : 'name'}&keyword=${keyword ? keyword : ''}`);
+        console.log("responseapi",response)
+        return response
+    };
 
+    const showAllCSVTrip = async () => {
+        console.log("Tripapi");
+        const response = await api.get(`trip/showAll`);
+        return response
+    };
 
-const api = instance.api;
-const postApi = postInstance.api
-const deleteApi = deleteInstance.api
-const updateApi = updateInstance.api
-const showOneApi = showOneInstance.api
+    const showOneTrip = async (id) => {
+        console.log("Tripapi",id);
+        const response = await api.get(`trip/showOne?id=${id}`);
+        return response
+    };
 
-export const showAllTrip = (pageIndex,pageSize,search,keyword) => {
-    console.log("get",pageIndex,pageSize)
-    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:'customer_name'}&keyword=${keyword?keyword:''}`)
+    const addTrip =async (TripData) => {
+        await api.post('trip/add', TripData);
+    };
+
+    const updateTrip =async (TripData) => {
+    return await api.put('trip/update', TripData);
+    };
+
+    const deleteTrip =async (TripId) => {
+        console.log("tripid",TripId)
+         await api.delete('trip/delete', { data: { id: TripId } });
+         return TripId
+    };
+
+    return {
+        showAllCSVTrip,
+        showAllTrip,
+        addTrip,
+        updateTrip,
+        deleteTrip,
+        showOneTrip
+    };
 };
-export const showAllCSVTrip = ()=>{
-    return api.get()
-}
-export const addTrip = (payload) =>{
-    return postApi.post(postApi.baseURL,payload)
-}
-export const deleteTrip = (payload) => {
-    console.log("payload",payload)
-    return deleteApi.delete(deleteApi.baseURL, { data: payload })
-}
-export const updateTrip = (payload)=>{
-    return updateApi.put(updateApi.baseURL,payload)
-}
-export const showOneTrip = (payload)=>{
-    console.log("api",payload)
-    return showOneApi.get(showOneApi.baseURL,{  params: payload  })
-}
+
+export default TripAPI;

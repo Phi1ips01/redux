@@ -1,49 +1,47 @@
+import { useAPI } from './apiInstance'; 
 
-import { APIInstance } from './apiInstance';
+const UserAPI = () => {
+    const { api } = useAPI();
+    console.log("api");
 
-export const instance = new APIInstance({
-    baseURL: 'user/showAll'
-});
-export const postInstance = new APIInstance({
-    baseURL: 'user/add'
-});
-export const deleteInstance = new APIInstance({
-    baseURL: 'user/delete'
-})
-export const updateInstance = new APIInstance({
-    baseURL: 'user/update'
-})
-export const showOneInstance = new APIInstance({
-    baseURL: 'user/showOneByPk'
-})
-
-const api = instance.api;
-const postApi = postInstance.api
-const deleteApi = deleteInstance.api
-const updateApi = updateInstance.api
-const showOneApi = showOneInstance.api
-
-
-export const showAllUser = (pageIndex,pageSize,search,keyword) => {
-    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:'username'}&keyword=${keyword?keyword:''}`)
+    const showAllUser = async ({page, size, search, keyword}) => {
         
+        console.log("showallblauserapi",page,size,search,keyword)
+        const response = await api.get(`user/showall?page=${page}&size=${size}&search=${search ? search : 'name'}&keyword=${keyword ? keyword : ''}`);
+        return response
     };
-    export const showAllCSVUser = ()=>{
-        return api.get()
-    }
-export const addUser = (payload) =>{
-    console.log("payload",payload)
 
-    return postApi.post(postApi.baseURL,payload)
-}
-export const deleteUser = (payload) => {
-    console.log("payload",payload)
-    return deleteApi.delete(deleteApi.baseURL, { data: payload })
-}
-export const updateUser = (payload)=>{
-    return updateApi.put(updateApi.baseURL,payload)
-}
-export const showOneUser = (payload)=>{
-    console.log("api",payload)
-    return showOneApi.get(showOneApi.baseURL,{  params: payload  })
-}
+    const showAllCSVUser = async () => {
+        console.log("Userapi");
+        const response = await api.get(`user/showAll`);
+        return response
+    };
+
+    const showOneUser = async (payload) => {
+        console.log("Userapi");
+        const response = await api.get(`user/showOne?id=${payload}`,payload);
+        return response
+    };
+    const addUser =async (UserData) => {
+        const response = await api.post('user/add', UserData);
+      return response  
+    };
+    const updateUser =async (UserData) => {
+        return await api.put('user/update', UserData);
+    };
+
+    const deleteUser =async (UserId) => {
+        const response = await api.delete('user/delete', { data: { id: UserId } });
+      return response  
+    };
+    return {
+        showAllCSVUser,
+        showAllUser,
+        addUser,
+        updateUser,
+        deleteUser,
+        showOneUser
+    };
+};
+
+export default UserAPI;

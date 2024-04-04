@@ -1,0 +1,35 @@
+.links {
+    margin-right: 20px;
+    padding: 5px 10px;
+  }
+  
+  .dropdown-content .nav-logo img {
+    margin-left: 10px;
+    height: 50px;
+    width: auto;
+  }
+  
+  .links a {
+    margin-left: 18px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .logout {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .dropdown-content
+  {
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(144, 142, 142);
+    padding: 20px 40px;
+    z-index: 10;
+  }
+  .links a:hover{
+    color: #de6363;
+  }

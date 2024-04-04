@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
-export default class DropDown extends Component {
-  handleLogOut = ()=>{
-console.log(this.props)
-    this.props.logout()
-    window.location.href = "/"
-  }
-  render() {
-    return (
-      <div>
-            <div className="dropdown">
-        <button className="dropdown-btn">&#9776;</button>
-        <div className="dropdown-content">
-          <a href="/home">Trip Details</a>
-          <a href="/tripData">Admin Panel</a>
-          <div className='logout'>
-          <button className='logout-button' onClick={this.handleLogOut}>Logout</button>
-        </div>
-      
-        </div>
-        
-        <div className="clear"></div>
+import React from 'react';
+import logo from '../../images/logo sigma.png'
+import './dropdown.css'
+import { useDispatch } from 'react-redux';
 
+const DropDown = ({logOut}) => {
+  const dispatch=useDispatch()
+  const handleLogOut = (e) => {
+    e.preventDefault();
+    console.log('Logout clicked');
+    dispatch(logOut())
+    window.location.href = '/';
+  };
+
+  return (
+    <div className='dropdown-content'>
+      <div className="nav-logo">
+        <a href='/'><img src={logo} alt="Logo" /></a>
+      </div>
+      <div className="links">
+        <a href="/home">CUSTOMER TRIP</a>
+        <a href="/tripData">ADMIN PANEL</a>
+        <a href="/" onClick={handleLogOut}>LOG OUT</a>
+      </div>
     </div>
-        </div>
-    );
-  }
-}
+  );
+};
+
+export default DropDown;

@@ -1,47 +1,47 @@
+import { useAPI } from './apiInstance'; 
 
-import { APIInstance } from './apiInstance';
+const BusAPI = () => {
+    const { api } = useAPI();
+    console.log("api");
 
-export const instance = new APIInstance({
-    baseURL: 'bus/showAll'
-});
-export const postInstance = new APIInstance({
-    baseURL: 'bus/add'
-});
-export const deleteInstance =new APIInstance({
-    baseURL:'bus/delete'
-})
-export const updateInstance = new APIInstance({
-    baseURL:'bus/update'
-})
-export const showOneInstance = new APIInstance({
-    baseURL: 'bus/showOne'
-})
+    const showAllBus = async (page, size, search, keyword) => {
+        console.log("pagesize",page,size,search,keyword)
 
+       return await api.get(`bus/showall?page=${page}&size=${size}&search=${search ? search : 'name'}&keyword=${keyword ? keyword : ''}`);
+    };
 
-const api = instance.api;
-const postApi = postInstance.api
-const deleteApi = deleteInstance.api
-const updateAPI = updateInstance.api
-const showOneApi = showOneInstance.api
+    const showAllCSVBus = async () => {
+        console.log("busapi"); 
+        const response = await api.get(`bus/showAll`);
+        return response
+    };
+    const showOneBus = async (id) => {
+        const response = await api.get(`bus/showOne?id=${id}`);
+        console.log("busapi",response); 
+        
+        return response
+    };
 
-export const showAllBus = (pageIndex,pageSize,search,keyword) => {
-    console.log("showallbus",pageIndex,pageSize,search,keyword);
-    return api.get(`?page=${pageIndex}&size=${pageSize}&search=${search?search:'name'}&keyword=${keyword?keyword:''}`)
+    const addBus =async (busData) => {
+       return await api.post('bus/add', busData);
+    };
+
+    const updateBus =async (busData) => {
+       return await api.put('bus/update', busData);
+    };
+
+    const deleteBus =async (busId) => {
+       return await api.delete('bus/delete', { data: { id: busId } });
+    };
+
+    return {
+        showAllCSVBus,
+        showAllBus,
+        addBus,
+        updateBus,
+        deleteBus,
+        showOneBus
+    };
 };
-export const showAllCSVBus = ()=>{
-    return api.get()
-}
-export const addBus = (payload) => {
-    return postApi.post(api.baseURL,payload)
-}
-export const deleteBus = (payload) => {
-    console.log("payload",payload)
-    return deleteApi.delete(deleteApi.baseURL, { data: payload })
-}
-export const updateBus = (payload)=>{
-    return updateAPI.put(api.baseURL, payload )
-}
-export const showOneBus = (payload)=>{
-    console.log("api",payload)
-    return showOneApi.get(showOneApi.baseURL,{  params: payload  })
-}
+
+export default BusAPI;
