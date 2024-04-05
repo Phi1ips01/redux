@@ -3,9 +3,8 @@ import InputButton from '../../Components/InputButton';
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
 import DynamicTable from '../../Components/TableComponent'
-import CsvLink from '../../Components/CsvLink'
+import CSV from '../../Components/CsvLink';
 import FormInput from '../../Components/FormInputComponent';
-import { logout } from '../../features/login/loginSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBusOperatorReducer, deleteBusOperatorReducer, getTotalBusOperatorReducer, showAllBusOperatorReducer, showBusOperatorReducer, showOneBusOperatorReducer, updateBusOperatorReducer } from '../../features/busOperator/busOperatorSlice';
 
@@ -34,9 +33,6 @@ const BusOperator = ()=>{
     setIsEditMode(!!busOperatorOneData && !!busOperatorOneData.id);
   }, [busOperatorOneData]);
 
-  const handleCSVDownload = ()=>{
-    dispatch(showAllBusOperatorReducer)
-  }
   const handleSubmit=(event)=> {
       event.preventDefault();
       const formName = event.target.name.value!==''?event.target.name.value:busOperatorOneData.name
@@ -109,7 +105,7 @@ const BusOperator = ()=>{
   };
   return (
     <div>
-      <DropDown logout={logout}/>
+      <DropDown/>
       <SideBar/>
       <div className="default-main">
         <form onSubmit={handleSubmit}>
@@ -161,18 +157,16 @@ const BusOperator = ()=>{
       showOneRow = {showOneBusOperatorReducer}
       count= {busOperatorCount}
       showAll={showBusOperatorReducer}
+      csv_showAll={showAllBusOperatorReducer}
+      csv_data={busOperatorAllData}
+      csv_name={"busOperator"}
       />
-      <div className='csv-totalbox'>
          <div className="totals-box">
           <div>Total Amount: {busOperatorTotalAmount}</div>
           <div>Total Profit: {busOperatorProfit}</div>
-        </div> 
-        <button className="csv-button" onClick={handleCSVDownload}>
-          Download
-          {busOperatorAllData && (
-            <CsvLink data={busOperatorAllData} columns={tableColumns()}/>
-          )}
-        </button>
+        {/* <CSV showAll = {showAllBusOperatorReducer} data={busOperatorAllData} name="busOperator" columns={tableColumns()}/> */}
+
+        
       </div>
     </div>
   );

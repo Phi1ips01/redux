@@ -4,6 +4,7 @@
   import ModifyTableButton from '../ModifyTableButton';
   import Pagination from 'react-bootstrap/Pagination';
 import { useDispatch } from 'react-redux';
+import CSV from '../CsvLink';
 
 
   const DynamicTable = ({
@@ -16,8 +17,12 @@ import { useDispatch } from 'react-redux';
     handleKeywordChange,
     showOneRowData,
     count,
-    showAll,    
+    showAll,
+    csv_showAll={csv_showAll},
+    csv_data={csv_data},
+    csv_name={csv_name}    
   }) => {
+
     const tableData = useMemo(() => data, [data]);
     const {
       getTableProps,
@@ -54,7 +59,12 @@ import { useDispatch } from 'react-redux';
       <div className="grid grid-cols-1">
         <div className="grid-item">
           {console.log("table component search function columns",searchColumns)}
+                
+
           <Search handleColumnChange={handleColumnChange} handleKeywordChange={handleKeywordChange} columns={searchColumns} onClear={handleClear}/>
+          <div className="csv-link-container">
+            <CSV showAll = {csv_showAll} data={csv_data} name={csv_name} columns={columns}/>
+          </div>
 
           <div className="table-container">
             <table {...getTableProps()} className="table table-striped  ">

@@ -223,14 +223,19 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-.csv-button
-{
+.csv-link {
+  text-decoration: none;
   padding: 0 10px;
+  margin-right: 6%;
+  margin-bottom: 20px;
   border-radius: 6px;
-   background: rgb(135, 135, 255);
   color: white;
   border: none;
   height: min-content;
+}
+.csv-link-container {
+  display: flex;
+  justify-content: flex-end;
 }
 .csv-totalbox
 {

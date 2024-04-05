@@ -1,6 +1,5 @@
 import React, { useState,useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CsvLink from '../../Components/CsvLink'
 import DynamicTable from '../../Components/TableComponent'
 import DropDown from '../../Components/DropDown';
 import SideBar from '../../Components/SideBar';
@@ -9,7 +8,7 @@ import FormInput from '../../Components/FormInputComponent';
 import { showAllTripReducer,updateTripReducer,showOneTripReducer,deleteTripReducer,showTripReducer, addTripReducer } from '../../features/trip/tripSlice';
 import { showAllBusOperatorReducer } from '../../features/busOperator/busOperatorSlice';
 import { showAllBusReducer } from '../../features/bus/busSlice';
-import { logout } from '../../features/login/loginSlice';
+import CSV from '../../Components/CsvLink';
 
 const TripData = ()=>{
   const [selectedOperatorId,setSelectedOperatorId] = useState('')
@@ -68,7 +67,7 @@ const TripData = ()=>{
   }, [dispatch]);
   const busOperatorData = useSelector((state) => state.busOperators.busOperatorAllData);
   const tripData = useSelector((state)=>state.trips.tripData)
-  const busData = useSelector((state) => state.buses.busData);
+  const busData = useSelector((state) => state.buses.busAllData);
   const showOneTripData = useSelector((state) => state.trips.tripOneData);
   const tripCount = useSelector((state)=> state.trips.tripCount)
   const tripAllData = useSelector((state)=>state.trips.tripAllData)
@@ -134,10 +133,10 @@ const searchColumns = ()=>{
 
     return (
       <div>
-        <DropDown logout={logout}/>
+        <DropDown/>
             <SideBar/>
       {isEditMode && (
-      <div class="container">
+      <div className="container">
         <form onSubmit={handleSubmit}>
               <h3>Enter the Trip details to be Updated</h3>
 <div className="form-row">
@@ -383,16 +382,12 @@ const searchColumns = ()=>{
               showOneRow = {showOneTripReducer}
               count= {tripCount}
               showAll={showTripReducer}
+              csv_showAll={showAllTripReducer}
+              csv_data={tripAllData}
+              csv_name={"customer"}
               />
-                <button className="csv-button" onClick={handleCSVDownload}>
-                  Download
-                {tripAllData && (
-                  <>
-                {console.log("this.props.tripdata",tripAllData)}
-          {tripAllData && (<CsvLink data={tripAllData} name="customer" columns={tableColumns()}/>)}
-          </>
-        )}
-  </button>
+
+           {/* <CSV showAll = {showAllTripReducer} data={tripAllData} name="customer" columns={tableColumns()}/> */}
     </div>
     );
 }

@@ -4,10 +4,9 @@ import DynamicTable from '../../Components/TableComponent';
 import SideBar from '../../Components/SideBar';
 import DropDown from '../../Components/DropDown';
 import InputButton from '../../Components/InputButton';
-import CsvLink from '../../Components/CsvLink'
 import FormInput from '../../Components/FormInputComponent';
 import {addUserReducer,showAllUserReducer,showOneUserReducer,showUserReducer,updateUserReducer,deleteUserReducer} from '../../features/user/userSlice'
-import { logout } from '../../features/login/loginSlice';
+import CSV from '../../Components/CsvLink';
 const User = ()=>{
   const [isEditMode,setIsEditMode]=useState(false)
   const [search, setSearchValue] = useState({ column: '', keyword: '' });
@@ -103,7 +102,7 @@ const User = ()=>{
 
     return (
       <div>
-            <DropDown logout={logout}/>
+            <DropDown/>
         <SideBar />
 
         <div className="default-main">
@@ -163,13 +162,11 @@ const User = ()=>{
           showOneRow = {showOneUserReducer} 
           count= {userCount}
           showAll={showUserReducer}
-          />
-           <button className="csv-button" onClick={handleCSVDownload}>
-            Download
-                {userAllData && (
-          <CsvLink data={userAllData} columns={tableColumns()}/>
-        )}
-  </button>
+          csv_showAll={showAllUserReducer}
+      csv_data={userAllData}
+      csv_name={"user"}
+          />  
+  {/* <CSV showAll = {showAllUserReducer} data={userAllData} name="user" columns={tableColumns()}/> */}
       </div>
     );
   }

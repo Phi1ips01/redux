@@ -9,25 +9,34 @@ const initialState = {
 
 export const signIn = createAsyncThunk('auth/signIn', async (payload) => {
   try {
-    const data = await Login().login(payload);
-    localStorage.setItem(KEYS.ACCESS_TOKEN, payload.data.token);
-    return data;
+    console.log("login started")
+    const response =  Login().login(payload)
+    console.log("token login",response.data.token)
+    return response.data.payload;
+  } catch (error) {
+    throw error;
+  }
+});
+export const logOutUser = createAsyncThunk('auth/logOutUser', async () => {
+  try {
+    localStorage.removeItem(KEYS.ACCESS_TOKEN);
+    return true; // Indicate successful logout
   } catch (error) {
     throw error;
   }
 });
 
-
 const loginSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    logout(state) {
-      localStorage.removeItem('ACCESS_TOKEN');
-      state.loading = false;
-      state.error = false;
-      state.user = {};
-    },
+    // logOut(state) {
+    //   localStorage.removeItem(KEYS.ACCESS_TOKEN);
+    //   console.log("remove item ",localStorage.getItem(KEYS.ACCESS_TOKEN))
+    //   state.loading = false;
+    //   state.error = false;
+    //   state.user = {};
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -37,14 +46,19 @@ const loginSlice = createSlice({
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload;
+        state.user = action.payload.payload;
+        console.log("user",state.user)
       })
       .addCase(signIn.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
+      .addCase(logOutUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = null;
+      });
   },
 });
 
 export default loginSlice.reducer;
-export const { logout } = loginSlice.actions;
+// export const { logOut } = loginSlice.actions;

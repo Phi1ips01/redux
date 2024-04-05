@@ -3,12 +3,16 @@ import logo from '../../images/logo sigma.png'
 import './dropdown.css'
 import { useDispatch } from 'react-redux';
 
-const DropDown = ({logOut}) => {
-  const dispatch=useDispatch()
+import { KEYS } from '../../dataKeys';
+import { logOutUser } from '../../features/login/loginSlice';
+
+const DropDown = () => {
+  const dispatch = useDispatch();
+
   const handleLogOut = (e) => {
     e.preventDefault();
-    console.log('Logout clicked');
-    dispatch(logOut())
+    dispatch(logOutUser())
+    console.log('Logout clicked',localStorage.getItem(KEYS.ACCESS_TOKEN));
     window.location.href = '/';
   };
 

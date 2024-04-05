@@ -3,13 +3,11 @@ import InputButton from '../../Components/InputButton';
 import DynamicTable from '../../Components/TableComponent';
 import SideBar from '../../Components/SideBar'
 import DropDown from '../../Components/DropDown'
-import CsvLink from '../../Components/CsvLink'
 import FormInput from '../../Components/FormInputComponent';
 import { showAllBusOperatorReducer } from '../../features/busOperator/busOperatorSlice';
 import { addBusReducer, deleteBusReducer, showAllBusReducer, showBusReducer, showOneBusReducer, updateBusReducer } from '../../features/bus/busSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../features/login/loginSlice';
-
+import CSV from '../../Components/CsvLink';
     const Bus=()=>{
       const [isEditMode,setIsEditMode]=useState(false)
       const [search, setSearchValue] = useState({ column: '', keyword: '' });
@@ -124,7 +122,7 @@ import { logout } from '../../features/login/loginSlice';
       };
     return (
         <div>
-            <DropDown logout={logout}/>
+            <DropDown />
             <SideBar/>
             
            <div className="default-main">
@@ -204,15 +202,14 @@ import { logout } from '../../features/login/loginSlice';
         showOneRow = {showOneBusReducer}
         count= {busCount}
         showAll={showBusReducer}
+        csv_showAll={showAllBusReducer}
+      csv_data={busAllData}
+      csv_name={"bus"}
         />
-          <button className="csv-button" onClick={handleCSVDownload}>
-            Download
-                {busAllData && (
-          <CsvLink data={busAllData} columns={tableColumns()}/>
-        )}
-  </button>
+  {/* <CSV showAll = {showAllBusReducer} data={busAllData} name="bus" columns={tableColumns()}/> */}
         </div>
     ); 
 };
+
 export default Bus
  

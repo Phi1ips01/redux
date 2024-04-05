@@ -8,7 +8,6 @@ import FormInput from '../../Components/FormInputComponent';
 import './home.css'
 import { showAllBusOperatorReducer } from '../../features/busOperator/busOperatorSlice';
 import {showAllBusReducer} from '../../features/bus/busSlice'
-import {logout} from '../../features/login/loginSlice'
 import {addTripReducer} from '../../features/trip/tripSlice'
 const Home = () => {
   const [formData, setFormData] = useState({})
@@ -18,8 +17,9 @@ const Home = () => {
   useEffect(() => {
     dispatch(showAllBusOperatorReducer());
   }, [dispatch]);
-  const busOperatorData = useSelector((state) => state.busOperators.busOperatorData);
-  const busData = useSelector((state) => state.buses.busData);
+  const busOperatorData = useSelector((state) => state.busOperators.busOperatorAllData);
+  console.log("busOepratorData",busOperatorData)
+  const busData = useSelector((state) => state.buses.busAllData);
 
   
   const handleOperatorChange = (event) => {
@@ -121,7 +121,7 @@ const Home = () => {
     }
     return (
       <div>
-        <DropDown logout={logout}/>
+        <DropDown/>
         <TopNav />
 
 
