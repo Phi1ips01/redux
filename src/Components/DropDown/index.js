@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { KEYS } from '../../dataKeys';
 import { logOutUser } from '../../features/login/loginSlice';
+import { Link } from 'react-router-dom';
 
 const DropDown = () => {
   const dispatch = useDispatch();
@@ -19,15 +20,17 @@ const DropDown = () => {
   return (
     <div className='dropdown-content'>
       <div className="nav-logo">
-        <a href='/'><img src={logo} alt="Logo" /></a>
+        <Link href='/'><img src={logo} alt="Logo" /></Link>
       </div>
       <div className="links">
-        <a href="/home">CUSTOMER TRIP</a>
-        <a href="/tripData">ADMIN PANEL</a>
-        <a href="/" onClick={handleLogOut}>LOG OUT</a>
+      <Link to="/home">CUSTOMER TRIP</Link>
+        <Link to="/tripData">ADMIN PANEL</Link>
+        <Link to="/" onClick={handleLogOut}>LOG OUT</Link>
+        
       </div>
     </div>
   );
+  
 };
 
 export default DropDown;

@@ -47,7 +47,6 @@ export const useAPI = () => {
         if (config.noCancel) {
             return config;
         }
-        
         const token = localStorage.getItem(KEYS.ACCESS_TOKEN);
         
         if (token) {

@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {KEYS} from '../../dataKeys'
 import Login from '../../api/login';
 const initialState = {
   user: null,
@@ -10,8 +9,9 @@ const initialState = {
 export const signIn = createAsyncThunk('auth/signIn', async (payload) => {
   try {
     console.log("login started")
-    const response =  Login().login(payload)
+    const response = await Login().login(payload)
     console.log("token login",response.data.token)
+    console.log("token payload",response.data.payload.role)
     return response.data.payload;
   } catch (error) {
     throw error;
@@ -19,7 +19,7 @@ export const signIn = createAsyncThunk('auth/signIn', async (payload) => {
 });
 export const logOutUser = createAsyncThunk('auth/logOutUser', async () => {
   try {
-    localStorage.removeItem(KEYS.ACCESS_TOKEN);
+    localStorage.clear()
     return true; // Indicate successful logout
   } catch (error) {
     throw error;
@@ -29,15 +29,7 @@ export const logOutUser = createAsyncThunk('auth/logOutUser', async () => {
 const loginSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    // logOut(state) {
-    //   localStorage.removeItem(KEYS.ACCESS_TOKEN);
-    //   console.log("remove item ",localStorage.getItem(KEYS.ACCESS_TOKEN))
-    //   state.loading = false;
-    //   state.error = false;
-    //   state.user = {};
-    // },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(signIn.pending, (state) => {
@@ -46,7 +38,7 @@ const loginSlice = createSlice({
       })
       .addCase(signIn.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.payload;
+        state.user = action.payload.role;
         console.log("user",state.user)
       })
       .addCase(signIn.rejected, (state, action) => {
@@ -61,4 +53,3 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice.reducer;
-// export const { logOut } = loginSlice.actions;

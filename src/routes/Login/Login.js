@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, } from 'react-redux';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { signIn } from '../../features/login/loginSlice';
@@ -22,14 +22,8 @@ const LoginPage = () => {
     }),
     onSubmit: async (values, { setSubmitting, setFieldError }) => {
       try {
-        dispatch(signIn({ email: values.email, password: values.password }));
-          
-// Wait for 1000ms (1 second) before setting the Authorization header
-setTimeout(() => {
-  navigate(ROUTES.HOME)
-}, 1000);
-
-          // navigate(ROUTES.LOGIN); 
+        await dispatch(signIn({ email: values.email, password: values.password }));
+        navigate(ROUTES.HOME);
       } catch (error) {
         setFieldError('password', 'Invalid email or password');
       } finally {

@@ -6,7 +6,7 @@ const CSV = ({ showAll, data, name, columns }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(showAll());
-  }, []);
+  }, [dispatch,showAll]);
 
   const csvData = Array.isArray(data) ? data : [];
   const slicedColumns = columns.slice(0, -2);
